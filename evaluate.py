@@ -17,12 +17,15 @@ import matplotlib.pyplot as plt
 
 def plot_roc(test_labels, pred_probs):
     
+    AUC = roc_auc_score(test_labels, pred_probs)
+    
     #pred_classes = [1 if val > 0.5 else 0 for val in predictions ]
     fp, tp, _ = roc_curve(test_labels, pred_probs)
-    plt.plot(fp*100, tp*100)
+    plt.plot(fp*100, tp*100, label = f"AUC score: {AUC}")
+    plt.legend(loc = 'lower right')
     plt.xlabel("FP rate")
     plt.ylabel("TP rate")
-    plt.savefig('roc_curve.jpg')
+    plt.savefig('results/plots/roc_curve.jpg')
     plt.show()
 
 
@@ -34,7 +37,7 @@ def eval_net():
     
     # read in test labels
 
-    df_test_labels = pd.read_csv('evaluate/test_labels.csv')
+    df_test_labels = pd.read_csv('data/processed/test_labels.csv')
 
     test_labels = df_test_labels['labels']
 
