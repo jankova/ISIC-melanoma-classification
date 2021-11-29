@@ -2,7 +2,7 @@
 
 The goal is to predict whether a lesion is a malignant or benign, based on its image (photograph).
 
-We used approximately 12119 images for training and 1537 images for testing (the full SIIM-ISIC dataset has around 30000 images),
+We used approximately 12119 images for training and 1537 images for testing (the full SIIM-ISIC dataset has around 40000 images),
 with resolution 150x150 pixels.
 With this reduced dataset, we obtain a final AUC score of 0.8079.
 
