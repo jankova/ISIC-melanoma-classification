@@ -1,34 +1,26 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 18 16:36:45 2021
-
-@author: janajankova
-"""
-
 import tensorflow as tf
 from config import IMG_WIDTH, IMG_HEIGHT, BATCH_SIZE
 
-
-
 def get_data_gen():
     
-    print(BATCH_SIZE)
+    print(f"Batch size: {BATCH_SIZE}\n")
     
     data_dir_train = 'data/processed/train/'
     data_dir_test = 'data/processed/test/'
 
+    print("Train data:")
     train_ds = tf.keras.preprocessing.image_dataset_from_directory(
         data_dir_train,
         labels = "inferred",
         validation_split = 0.0,
-        #shuffle = True,
+        # shuffle = True,
         seed = 42,
-        #subset = "training",
+        # subset = "training",
         batch_size = BATCH_SIZE,
         image_size = (IMG_WIDTH, IMG_HEIGHT)
     )
     
+    print("\nTest data:")
     val_ds = tf.keras.preprocessing.image_dataset_from_directory(
         data_dir_test,
         labels = "inferred",
@@ -43,5 +35,5 @@ def get_data_gen():
     
 if __name__ == '__main__':
     
-    get_df()
+    get_data_gen()
     

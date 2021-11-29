@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 18 16:36:45 2021
-
-@author: janajankova
-"""
-
 import pandas as pd
 import tensorflow as tf
 from argparse import ArgumentParser
@@ -16,14 +8,12 @@ from dataset import get_data_gen
 def parse_args():
     
     parser = ArgumentParser()
-    
     parser.add_argument('--enet-type', type = str, required = True)
     
     args, _ = parser.parse_known_args()
     
     return args
     
-
 
 def save_preds():
     
@@ -38,10 +28,10 @@ def save_preds():
     
     preds = model.predict(val_ds)
     preds = [prob[0] for prob in preds]
-    #print(preds)
+    
     df_preds = pd.DataFrame({'preds': preds})
     df_preds.to_csv(f'results/predictions/predictions-{args.enet_type}.csv', index = False)
-    print(preds)
+    print(f"Predictions saved to 'results/predictions/predictions-{args.enet_type}.csv'.")
     
     
 if __name__ == '__main__':

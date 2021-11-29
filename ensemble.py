@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 18 16:36:45 2021
-
-@author: janajankova
-"""
-
 import os
 import pandas as pd
 import re
@@ -28,10 +20,7 @@ def main():
         
     pred_probs /= len(models)
 
-    print(pred_probs)
-
     pred_labels = [1 if prob > 0.5 else 0 for prob in pred_probs]
-
 
     # retrieve image names from file names
     lst_files_test = os.listdir('data/processed/test/benign')
@@ -52,6 +41,10 @@ def main():
 
     df_labels.to_csv('results/predictions/ensembled_labels.csv', index = False)
     df_probs.to_csv('results/predictions/ensembled_probs.csv', index = False)
+    
+    print(f"Predicted ensembled class labels saved to 'results/predictions/ensembled_labels.csv'.")
+    print(f"Predicted ensembled class probabilities saved to 'results/predictions/ensembled_probs.csv'.")
+    
 
 if __name__ == '__main__':
     

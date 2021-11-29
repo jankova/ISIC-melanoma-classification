@@ -1,16 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 18 16:36:45 2021
-
-@author: janajankova
-"""
-
 import numpy as np
 import pandas as pd
 import math
 from sklearn.metrics import roc_curve
-from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix
+from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix, classification_report
 from dataset import get_data_gen
 import matplotlib.pyplot as plt
 
@@ -19,7 +11,6 @@ def plot_roc(test_labels, pred_probs):
     
     AUC = roc_auc_score(test_labels, pred_probs)
     
-    #pred_classes = [1 if val > 0.5 else 0 for val in predictions ]
     fp, tp, _ = roc_curve(test_labels, pred_probs)
     plt.plot(fp*100, tp*100, label = f"AUC score: {AUC}")
     plt.legend(loc = 'lower right')
@@ -54,11 +45,14 @@ def eval_net():
     acc = accuracy_score(test_labels, pred_labels)
     AUC = roc_auc_score(test_labels, ens_probs)
 
+    print("\nConfusion matrix:")
     print(confusion_matrix(test_labels, pred_labels))
-    print(f'AUC score: {AUC}')
-    print(f'Accuracy: {acc}')
+    print(f'\nAUC score: {AUC}')
+    print(f'\nAccuracy: {acc}')
+    print('\nClassification report:')
+    print(classification_report(test_labels, pred_labels))
   
-    # Comparing ROC curves, AUC scores
+    # plot ROC curve, AUC score
 
     plot_roc(test_labels, ens_probs)
 

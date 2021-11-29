@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 18 16:36:45 2021
-
-@author: janajankova
-"""
-
 import os
 import argparse
 import pandas as pd
@@ -61,13 +53,13 @@ def run(train_ds, val_ds, args, ModelClass):
     # save model
     model.save('results/saved_models/'+args.enet_type)
     
-    # save predictions
+    print(f"Model {args.enet_type} saved to 'results/saved_models/{args.enet_type}'.")
     
-    preds = model.predict(val_ds)
-    preds = [prob[0] for prob in preds]
-    #print(preds)
-    df_preds = pd.DataFrame({'preds': preds})
-    df_preds.to_csv(f'results/predictions/predictions-{args.enet_type}.csv', index = False)
+    # save predictions   
+    # preds = model.predict(val_ds)
+    # preds = [prob[0] for prob in preds]
+    # df_preds = pd.DataFrame({'preds': preds})
+    # df_preds.to_csv(f'results/predictions/predictions-{args.enet_type}.csv', index = False)
 
     
     
@@ -91,14 +83,8 @@ def main():
     else:
         raise NotImplementedError()
            
-    # train models
+    # train and save model
     run(train_ds, val_ds, args, ModelClass)
-    
-    # ensemble
-    
-    # save submission predictions
-    print(args.enet_type)
-    print("hello world")
     
 
 if __name__ == '__main__':
