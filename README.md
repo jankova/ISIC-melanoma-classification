@@ -45,3 +45,8 @@ python evaluate.py
 Plot ROC curve, AUC score.
 
 ![ROC curve of the final model](results/plots/roc_curve.jpg)
+
+### Further improvements:
+- add more data, higher resolution
+- data augmentation
+- use meta data
