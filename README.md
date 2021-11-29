@@ -2,7 +2,8 @@
 
 The goal is to predict whether a mole is a malignant or benign, based on its image.
 
-We used approximately 13000 images for training (the full SIIM-ISIC dataset has around 30000 images).
+We used approximately 8000 images for training and 3000 images for testing (the full SIIM-ISIC dataset has around 30000 images).
+With this reduced dataset, we obtain a final AUC score of 0.8079.
 
 Python packages requirements: see [requirements.txt](requirements.txt)
 
