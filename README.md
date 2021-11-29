@@ -4,7 +4,7 @@ The goal is to predict whether a mole is a malignant or benign, based on its ima
 
 We used approximately 13000 images for training (the full SIIM-ISIC dataset has around 30000 images).
 
-Requirements:
+Software requirements: see [requirements.txt](requirements.txt)
 
 ## Training
 
@@ -40,4 +40,4 @@ python evaluate.py
 ## Visual output
 Plot ROC curve, AUC score.
 
-![alt text](results/plots/roc_curve.jpg)
+![ROC curve of the final model](results/plots/roc_curve.jpg)
