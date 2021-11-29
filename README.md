@@ -6,7 +6,7 @@ We used approximately 12119 images for training and 1537 images for testing (the
 with resolution 150x150 pixels.
 With this reduced dataset, we obtain a final AUC score of 0.8079.
 
-Training was run on an AWS instance in Tensorflow using re-training the last layers of ResNet, EfficientNet and VGG16 and ensembling the final predictions.
+Training was run on an AWS instance in Tensorflow by re-training the last layers of ResNet, EfficientNet and VGG16 and ensembling the final predictions.
 
 Python packages requirements: see [requirements.txt](requirements.txt)
 
