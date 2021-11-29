@@ -37,7 +37,7 @@ python ensemble.py
 python evaluate.py
 ```
 
-## Visual output
+## ROC curve
 Plot ROC curve, AUC score.
 
 ![ROC curve of the final model](results/plots/roc_curve.jpg)
