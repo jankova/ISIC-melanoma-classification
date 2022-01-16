@@ -1,4 +1,4 @@
-# ISIC-melanoma-classification
+# SIIM-ISIC melanoma classification
 
 The goal is to predict whether a lesion is malignant or benign, based on its image (photograph).
 
