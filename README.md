@@ -5,9 +5,9 @@ The goal is to predict whether a lesion is malignant or benign, based on its ima
 We used 12119 images for training and 1537 images for testing, with resolution 150x150 pixels. This is only a subset of the full [SIIM-ISIC-dataset](https://www.kaggle.com/c/siim-isic-melanoma-classification/data), which has around 40000 images.
 With the reduced dataset, we obtain a final AUC score of 0.8175.
 
-Training was run on an AWS instance in Tensorflow by re-training the last layers of ResNet, EfficientNet and VGG16 and ensembling the final predictions.
+Training was run on an AWS instance using Tensorflow by re-training the last layers of ResNet, EfficientNet and VGG16 and ensembling the final predictions.
 
-The output from the training epochs can be found in [01_main_training_notebook.ipynb](01_main_training_notebook.ipynb). 
+The output from the training epochs can be found in [01-run-training-notebook.ipynb](01-run-training-notebook.ipynb). 
 
 Python packages requirements: see [requirements.txt](requirements.txt)
 
@@ -47,6 +47,6 @@ Plot ROC curve, AUC score.
 ![ROC curve of the final model](results/plots/roc_curve.jpg)
 
 ### Further improvements:
-- add more data, higher resolution
-- data augmentation
+- train on the full data of 40000 images with a higher resolution
+- use data augmentation
 - use meta data
