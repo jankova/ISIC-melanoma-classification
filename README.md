@@ -47,6 +47,6 @@ Plot ROC curve, AUC score.
 ![ROC curve of the final model](results/plots/roc_curve.jpg)
 
 ### Further improvements:
-- train on the full data of 40000 images with a higher resolution
-- use data augmentation
-- use meta data
+- train on the full dataset of 40000 images with a higher resolution
+- implement data augmentation
+- encorporate meta data
