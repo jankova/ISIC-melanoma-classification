@@ -20,11 +20,11 @@ class ResNet50(tf.keras.Model):
         self.base_model.trainable = False
 
         self.flat = tf.keras.layers.Flatten()
-        self.dense_layer1 = tf.keras.layers.Dense(1000, activation = "relu", 
+        self.dense_layer1 = tf.keras.layers.Dense(256, activation = "relu", 
                                                   kernel_regularizer=tf.keras.regularizers.L2(l2=0.01))
         self.dropout_layer1 = tf.keras.layers.Dropout(0.5)
-        self.dense_layer2 = tf.keras.layers.Dense(300, activation = "relu")
-        self.dropout_layer2 = tf.keras.layers.Dropout(0.5)
+        #self.dense_layer2 = tf.keras.layers.Dense(300, activation = "relu")
+        #self.dropout_layer2 = tf.keras.layers.Dropout(0.5)
         self.prediction_layer = tf.keras.layers.Dense(1, activation = "sigmoid")
         
 
@@ -34,8 +34,8 @@ class ResNet50(tf.keras.Model):
         x = self.flat(x)
         x = self.dense_layer1(x)
         x = self.dropout_layer1(x)
-        x = self.dense_layer2(x)
-        x = self.dropout_layer2(x)
+        #x = self.dense_layer2(x)
+        #x = self.dropout_layer2(x)
         outputs = self.prediction_layer(x)
         
         return outputs
