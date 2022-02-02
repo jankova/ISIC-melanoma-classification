@@ -19,7 +19,7 @@ The '2020 Dataset' contains 33,126 images for training of which only 584 (1.8%) 
 
 Training was run on an AWS instance using Tensorflow by re-training the last layers of pretrained models (ResNet50, EfficientNetB4 and VGG16) and ensembling the final predictions.
 
-The output from the training epochs can be found in [01-main-training.ipynb](01-main-training.ipynb). 
+The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
 
 Python packages requirements: [requirements.txt](requirements.txt)
 
