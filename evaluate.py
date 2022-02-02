@@ -1,10 +1,24 @@
+# basic imports
 import numpy as np
 import pandas as pd
 import math
-from sklearn.metrics import roc_curve
-from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix, classification_report
-from dataset import get_data_gen
+import numpy as np
+
+# sklearn
+from sklearn.metrics import roc_curve, accuracy_score, roc_auc_score, confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
+
+# tensorflow
+import tensorflow as tf
+
+# plotting
 import matplotlib.pyplot as plt
+
+# custom imports
+from dataset import get_dataset
+import config
+
+
 
 
 def plot_roc(test_labels, pred_probs):
@@ -22,21 +36,40 @@ def plot_roc(test_labels, pred_probs):
 
 def eval_net():
     
-    # read in validation data
+    # load validation data
+    train_files_nums, valid_files_nums = train_test_split(np.arange(0,15), test_size = 0.2, random_state = 0)
     
-    _, val_ds = get_data_gen()
+    #files_train = [config.TRAIN_PATH + 'train'+ str(x).zfill(2) + '*.tfrec' for x in train_files_nums]
+    files_valid = [config.TRAIN_PATH + 'train' + str(x).zfill(2) + '*.tfrec' for x in valid_files_nums]
     
+    #TRAINING_FILENAMES = tf.io.gfile.glob(files_train)  
+    VALID_FILENAMES = tf.io.gfile.glob(files_valid)
+    
+    val_ds_tf = get_dataset(VALID_FILENAMES,
+                            augment=None, 
+                            shuffle=False,
+                            repeat=False, 
+                            dim=config.IMG_HEIGHT)
+    
+    
+    test_labels = []
+    
+    for example, label in val_ds_tf:
+        test_labels.extend(np.array(label))
+             
+    print(np.sum(test_labels))
+        
     # read in test labels
 
-    df_test_labels = pd.read_csv('data/processed/test_labels.csv')
+    #df_test_labels = pd.read_csv('data/processed/test_labels.csv')
 
-    test_labels = df_test_labels['labels']
+    #test_labels = df_test_labels['labels']
 
     # read in ensembled labels
     
-    df_ens_probs = pd.read_csv('results/predictions/ensembled_probs.csv')
+    df_ens_probs = pd.read_csv('results/predictions/predictions-EfficientNet.csv')
     
-    ens_probs = df_ens_probs['probs']
+    ens_probs = df_ens_probs['preds']
     
     pred_labels = [1 if prob > 0.5 else 0 for prob in ens_probs]
     
