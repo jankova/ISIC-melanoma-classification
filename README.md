@@ -34,11 +34,11 @@ The best performing architecture in terms of validation AUC was EfficientNetB4.
 As the next step we continued with EfficientNetB4 and experimented with
 1. adding additional 4000 examples of malignant-only images to the training data
 2. add class weights
-3. adjust learning rates
+3. adjust learning rates, architecture, image resolution
 
 ```
 python train.py --enet-type ResNet --n-epochs 10
-python train.py --enet-type vgg16 --n-epochs 10
+python train.py --enet-type VGG16 --n-epochs 10
 python train.py --enet-type EfficientNet --n-epochs 10
 python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
 ```
