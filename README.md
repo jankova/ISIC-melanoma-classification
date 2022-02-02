@@ -64,10 +64,9 @@ python evaluate.py
 ```
 -->
 
-## ROC curve
-Plot ROC curve, AUC score.
+## ROC curve of EfficientNetB4
 
-![ROC curve of the final model](results/plots/roc_curve.jpg)
+![ROC curve of the final model](roc_curve_effnet.jpg)
 
 ### Further improvements:
 - train on higher resolution images
