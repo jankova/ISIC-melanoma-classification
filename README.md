@@ -46,11 +46,10 @@ python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
 Compute predictions for each model. 
 
 ```
-python predict.py --enet-type res_net 
-python predict.py --enet-type eff_net
-python predict.py --enet-type vgg16
+python predict.py --enet-type EfficientNet
 ```
 
+<!-- 
 ## Ensembling
 The predictions from the three models were ensembled into final predictions.
 
@@ -63,6 +62,7 @@ python ensemble.py
 ```
 python evaluate.py
 ```
+-->
 
 ## ROC curve
 Plot ROC curve, AUC score.
@@ -70,6 +70,6 @@ Plot ROC curve, AUC score.
 ![ROC curve of the final model](results/plots/roc_curve.jpg)
 
 ### Further improvements:
-- train on the full dataset of 40000 images with a higher resolution
+- train on higher resolution images
 - implement data augmentation
 - encorporate meta data
