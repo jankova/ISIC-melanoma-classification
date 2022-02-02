@@ -1,22 +1,45 @@
 # SIIM-ISIC melanoma classification
+https://www.kaggle.com/c/siim-isic-melanoma-classification
 
-The goal is to predict whether a lesion is malignant or benign, based on its image (photograph).
+## Goals and dataset
+The goal is to predict whether a skin lesion is malignant or benign, based on its photograph.
 
-We used 12119 images for training and 1537 images for testing, with resolution 150x150 pixels. This is only a subset of the full [SIIM-ISIC-dataset](https://www.kaggle.com/c/siim-isic-melanoma-classification/data), which has around 40000 images.
-With the reduced dataset, we obtain a final AUC score of 0.8175.
+We downloaded data in tfrec format prepared by Chris Deotte:
+https://www.kaggle.com/c/siim-isic-melanoma-classification/discussion/173639
 
-Training was run on an AWS instance using Tensorflow by re-training the last layers of ResNet, EfficientNet and VGG16 and ensembling the final predictions.
+Namely, we use the '2020 Dataset' with resolution 256x256 :
 
-The output from the training epochs can be found in [01-run-training-notebook.ipynb](01-run-training-notebook.ipynb). 
+https://www.kaggle.com/cdeotte/melanoma-256x256
 
-Python packages requirements: see [requirements.txt](requirements.txt)
+and also consider an additional sample of 4000 malignant-only images (256x256 resolution):
 
-## Training
+https://www.kaggle.com/cdeotte/malignant-v2-256x256 
+
+The '2020 Dataset' contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance.
+
+Training was run on an AWS instance using Tensorflow by re-training the last layers of pretrained models (ResNet50, EfficientNetB4 and VGG16) and ensembling the final predictions.
+
+The output from the training epochs can be found in [01-main-training.ipynb](01-main-training.ipynb). 
+
+Python packages requirements: [requirements.txt](requirements.txt)
+
+## Training summary
+We initially tried several different types of architectures: 
+1. ResNet50
+2. VGG16
+3. EfficientNetB4, EfficientNetB3
+
+The best performing architecture in terms of validation AUC was EfficientNetB4.
+
+As the next step we continued with EfficientNetB4 and experimented with
+1. adding additional 4000 examples of malignant-only images to the training data
+2. using a learning rate scheduler
 
 ```
-python train.py --enet-type res_net --n-epochs 10
-python train.py --enet-type eff_net --n-epochs 10
+python train.py --enet-type ResNet --n-epochs 10
 python train.py --enet-type vgg16 --n-epochs 10
+python train.py --enet-type EfficientNet --n-epochs 10
+python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
 ```
 
 ## Predictions
