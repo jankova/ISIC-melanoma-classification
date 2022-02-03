@@ -4,7 +4,7 @@ https://www.kaggle.com/c/siim-isic-melanoma-classification
 ## Goals and dataset
 The goal is to predict whether a skin lesion is malignant or benign, based on its photograph.
 
-We downloaded data in tfrec format prepared by Chris Deotte:
+We downloaded a dataset in tfrec format provided by Chris Deotte:
 https://www.kaggle.com/c/siim-isic-melanoma-classification/discussion/173639
 
 Namely, we use the '2020 Dataset' with resolution 256x256 :
@@ -17,11 +17,11 @@ https://www.kaggle.com/cdeotte/malignant-v2-256x256
 
 The '2020 Dataset' contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance.
 
-Training was run on an AWS instance using Tensorflow by re-training the last layers of pretrained models (ResNet50, EfficientNetB4 and VGG16) and ensembling the final predictions.
+Training was run on an AWS instance using Tensorflow by re-training the last layers of pretrained models (ResNet50, EfficientNetB4 and VGG16).
 
 The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
 
-Python packages requirements: [requirements.txt](requirements.txt)
+Python packages: [requirements.txt](requirements.txt)
 
 ## Training summary
 We initially tried several different types of architectures: 
@@ -44,7 +44,7 @@ python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
 ```
 
 ## Predictions
-Compute predictions for each model. 
+Compute predictions.
 
 ```
 python predict.py --enet-type EfficientNet
