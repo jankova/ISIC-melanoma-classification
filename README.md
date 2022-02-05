@@ -4,7 +4,7 @@ https://www.kaggle.com/c/siim-isic-melanoma-classification
 ## Goals and dataset
 The goal is to predict whether a skin lesion is malignant or benign, based on its photograph.
 
-We downloaded a dataset in tfrec format provided by Chris Deotte:
+We used the 2020 kaggle dataset resized by Chris Deotte:
 https://www.kaggle.com/c/siim-isic-melanoma-classification/discussion/173639
 
 Namely, we use the '2020 Dataset' with resolution 256x256 :
