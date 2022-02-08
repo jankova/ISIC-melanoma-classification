@@ -5,7 +5,9 @@ https://www.kaggle.com/c/siim-isic-melanoma-classification
 The goal is to predict whether a skin lesion is malignant or benign, based on its photograph.
 
 We used the 2020 kaggle dataset resized by Chris Deotte:
+
 https://www.kaggle.com/cdeotte/melanoma-256x256 ('2020 Dataset' with resolution 256x256)
+
 https://www.kaggle.com/cdeotte/malignant-v2-256x256 (4000 malignant-only images 256x256)
 
 The '2020 Dataset' contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance.
@@ -27,7 +29,7 @@ As the next step we continued with EfficientNetB4 and experimented with
 2. add class weights
 3. adjust learning rates, architecture, image resolution
 
-## Training: example usage
+## Training: example use
 ```
 python train.py --enet-type ResNet --n-epochs 10
 python train.py --enet-type VGG16 --n-epochs 10
@@ -35,11 +37,17 @@ python train.py --enet-type EfficientNet --n-epochs 10
 python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
 ```
 
-## Predictions: example usage
+## Predictions: example use
 Compute predictions.
 
 ```
 python predict.py --enet-type EfficientNet
+```
+
+## Evaluate: example use
+
+```
+python evaluate.py 
 ```
 
 <!-- 
