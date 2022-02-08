@@ -5,21 +5,12 @@ https://www.kaggle.com/c/siim-isic-melanoma-classification
 The goal is to predict whether a skin lesion is malignant or benign, based on its photograph.
 
 We used the 2020 kaggle dataset resized by Chris Deotte:
-https://www.kaggle.com/c/siim-isic-melanoma-classification/discussion/173639
-
-Namely, we use the '2020 Dataset' with resolution 256x256 :
-
-https://www.kaggle.com/cdeotte/melanoma-256x256
-
-and also consider an additional sample of 4000 malignant-only images (256x256 resolution):
-
-https://www.kaggle.com/cdeotte/malignant-v2-256x256 
+https://www.kaggle.com/cdeotte/melanoma-256x256 ('2020 Dataset' with resolution 256x256)
+https://www.kaggle.com/cdeotte/malignant-v2-256x256 (4000 malignant-only images 256x256)
 
 The '2020 Dataset' contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance.
 
-Training was run on an AWS instance using Tensorflow by re-training the last layers of pretrained models (ResNet50, EfficientNetB4 and VGG16).
-
-The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
+Training was run on an AWS instance using Tensorflow by re-training the last layers of pre-trained models (ResNet50, EfficientNetB1,B3,B4 and VGG16). The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
 
 Python packages: [requirements.txt](requirements.txt)
 
@@ -36,6 +27,7 @@ As the next step we continued with EfficientNetB4 and experimented with
 2. add class weights
 3. adjust learning rates, architecture, image resolution
 
+## Training: example usage
 ```
 python train.py --enet-type ResNet --n-epochs 10
 python train.py --enet-type VGG16 --n-epochs 10
@@ -43,7 +35,7 @@ python train.py --enet-type EfficientNet --n-epochs 10
 python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
 ```
 
-## Predictions
+## Predictions: example usage
 Compute predictions.
 
 ```
@@ -70,6 +62,5 @@ python evaluate.py
 ![ROC curve of the final model](roc_curve_effnet.jpg)
 
 ### Further improvements:
-- train on higher resolution images
+- train on higher resolution images, use 2019 data
 - implement data augmentation
-- encorporate meta data
