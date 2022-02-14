@@ -4,37 +4,36 @@ https://www.kaggle.com/c/siim-isic-melanoma-classification
 ## Goals and dataset
 The goal is to predict whether a skin lesion is malignant or benign, based on its photograph.
 
-We used the 2020 kaggle dataset resized by Chris Deotte:
+For training we used the 2020 ISIC dataset, resized to 256x256 and triple stratified:
 
-https://www.kaggle.com/cdeotte/melanoma-256x256 ('2020 Dataset' with resolution 256x256)
+https://www.kaggle.com/cdeotte/melanoma-256x256 
 
-https://www.kaggle.com/cdeotte/malignant-v2-256x256 (4000 malignant-only images 256x256)
+The dataset contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance. Therefore we additionally consider a dataset of 4000 malignant-only images https://www.kaggle.com/cdeotte/malignant-v2-256x256.
 
-The '2020 Dataset' contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance.
+Training was run using Tensorflow 2.3.0 on an AWS G4 instance. The model is a combination of a CNN architecture for training on images and a DNN model for the meta data, the resulting features are concatenated and passed through a dense layer.
+The CNN architectures experiment with re-training the last layers of pre-trained models (ResNet50, EfficientNetB1,B3,B4 and VGG16). 
 
-Training was run on an AWS instance using Tensorflow by re-training the last layers of pre-trained models (ResNet50, EfficientNetB1,B3,B4 and VGG16). The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
+The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
 
 Python packages: [requirements.txt](requirements.txt)
 
 ## Training summary
-We initially tried several different types of architectures: 
-1. ResNet50
-2. VGG16
-3. EfficientNetB4, EfficientNetB3
+EfficientNets turned out to perform best in this task.
 
-The best performing architecture in terms of validation AUC was EfficientNetB4.
-
-As the next step we continued with EfficientNetB4 and experimented with
+We experimented with
 1. adding additional 4000 examples of malignant-only images to the training data
-2. add class weights
-3. adjust learning rates, architecture, image resolution
+2. adding class weights
+3. adjusting learning rates, architecture, image resolution
+4. adding classical augmentations (rotations, flips, etc.)
+5. adding hair augmentation
 
 ## Training: example use
 ```
 python train.py --enet-type ResNet --n-epochs 10
 python train.py --enet-type VGG16 --n-epochs 10
 python train.py --enet-type EfficientNet --n-epochs 10
-python train.py --enet-type EfficientNet --n-epochs 10 --add-malig True
+python train.py --enet-type EfficientNet --n-epochs 20 --augment --hair-augment 
+python train.py --enet-type EfficientNet --n-epochs 20 --augment --hair-augment --add-malig
 ```
 
 ## Predictions: example use
@@ -70,5 +69,5 @@ python evaluate.py
 ![ROC curve of the final model](roc_curve_effnet.jpg)
 
 ### Further improvements:
-- train on higher resolution images, use 2019 data
-- implement data augmentation
+To obtain a high performing solution in this competetion, it would help to train several different EfficientNet architectures (B0-B7) with different datasets (ISIC 2020, 2019, 2018), with different image resolutions (256 to cca 800), with and without data/hair augmentation.
+
