@@ -18,6 +18,8 @@ The output of the training epochs can be found in [03-main-training.ipynb](03-ma
 
 Python packages: [requirements.txt](requirements.txt)
 
+The data needs to be download from the links above and unzipped to ```data/preprocessed_tfr/tfr_records_256``` and ```data/preprocessed_tfr/tfr_records_256_malig```. 
+
 ## Repository structure
 
 ```
@@ -95,10 +97,14 @@ python evaluate.py
 ```
 -->
 
-## ROC curve of EfficientNetB4
+#### Example output: 
+ROC curve for a model trained with
 
-![ROC curve of the final model](results/plots/roc_curve_effnet.jpg)
+```python train.py --enet-type EfficientNet --n-epochs 20 --augment --hair-augment --add-malig```
+
+![ROC curve of the final model](results/plots/roc_curve.jpg)
 
 ### Further improvements:
-To obtain a high performing solution in this competetion, it helps to train several different EfficientNet architectures (B0-B7) with different datasets (ISIC 2020, 2019, 2018), image resolutions (from 256 to 1024), with and without data/hair augmentation.
+To obtain a high performing solution in this competition, it helps to create an ensemble of several different EfficientNet architectures (B0-B7) trained on different datasets (ISIC 2020, 2019, 2018), image resolutions (from 256 to 1024), and with and without data/hair augmentation.
+
 
