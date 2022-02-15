@@ -10,16 +10,46 @@ https://www.kaggle.com/cdeotte/melanoma-256x256
 
 The dataset contains 33,126 images for training of which only 584 (1.8%) are malignant, resulting in high imbalance. Therefore we additionally consider a dataset of 4000 malignant-only images https://www.kaggle.com/cdeotte/malignant-v2-256x256.
 
-Training was run using Tensorflow 2.3.0 on an AWS G4 instance. The model is a combination of a ConvNet architecture for training on images and a fully connected neural network model for the meta data. 
+Training was run using Tensorflow 2.3.0 on an AWS G4 instance. The model is a combination of a ConvNet architecture for training on images and a fully connected neural network for the metadata. 
 The resulting features are concatenated and passed through a dense layer.
 We experimented with several different types of architectures, re-training the last layers of pre-trained models including ResNet50, EfficientNetB1,B3,B4 and VGG16.
 
-The output from the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
+The output of the training epochs can be found in [03-main-training.ipynb](03-main-training.ipynb). 
 
 Python packages: [requirements.txt](requirements.txt)
 
+## Repository structure
+
+```
+.
+├── data
+│   ├── preprocessed
+│   └── preprocessed_tfr
+│       └── tfr_records_256
+│           ├── train00-2182.tfrec
+│           └── train.csv
+├── models
+│   ├── models_efficient_net.py
+│   ├── models_vgg16.py
+│   └── models_resnet.py
+├── results
+│   ├── saved_models
+│   └── predictions
+├── 01-data-preparation.ipynb
+├── 02-unit-testing.ipynb
+├── 03-main-training.ipynb
+├── config.py
+├── dataset.py
+├── data_augmentation.py
+├── utils.py
+├── train.py
+├── predict.py
+├── evaluate.py
+└── README.md
+```
+
 ## Training summary
-In terms of model architecture, EfficientNets turned out to perform best in this task.
+We ran a number of experiments, which suggested that in terms of model architecture, EfficientNets performed best in this task.
 
 We further experimented with
 1. adding additional 4000 examples of malignant-only images to the training data
@@ -41,7 +71,8 @@ python train.py --enet-type EfficientNet --n-epochs 20 --augment --hair-augment 
 Compute predictions.
 
 ```
-python predict.py --enet-type EfficientNet
+python predict.py --data valid
+python predict.py --data test
 ```
 
 ## Evaluate: example use
@@ -67,7 +98,7 @@ python evaluate.py
 
 ## ROC curve of EfficientNetB4
 
-![ROC curve of the final model](roc_curve_effnet.jpg)
+![ROC curve of the final model](results/plots/roc_curve_effnet.jpg)
 
 ### Further improvements:
 To obtain a high performing solution in this competetion, it helps to train several different EfficientNet architectures (B0-B7) with different datasets (ISIC 2020, 2019, 2018), image resolutions (from 256 to 1024), with and without data/hair augmentation.
