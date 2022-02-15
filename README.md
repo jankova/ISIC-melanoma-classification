@@ -70,5 +70,5 @@ python evaluate.py
 ![ROC curve of the final model](roc_curve_effnet.jpg)
 
 ### Further improvements:
-To obtain a high performing solution in this competetion, it helps to train several different EfficientNet architectures (B0-B7) with different datasets (ISIC 2020, 2019, 2018), image resolutions (from 256 to 800), with and without data/hair augmentation.
+To obtain a high performing solution in this competetion, it helps to train several different EfficientNet architectures (B0-B7) with different datasets (ISIC 2020, 2019, 2018), image resolutions (from 256 to 1024), with and without data/hair augmentation.
 
