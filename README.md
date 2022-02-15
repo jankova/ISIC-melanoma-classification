@@ -26,8 +26,6 @@ Python packages: [requirements.txt](requirements.txt)
 │   ├── preprocessed
 │   └── preprocessed_tfr
 │       └── tfr_records_256
-│           ├── train00-2182.tfrec
-│           └── train.csv
 ├── models
 │   ├── models_efficient_net.py
 │   ├── models_vgg16.py
@@ -40,11 +38,12 @@ Python packages: [requirements.txt](requirements.txt)
 ├── 03-main-training.ipynb
 ├── config.py
 ├── dataset.py
-├── data_augmentation.py
-├── utils.py
-├── train.py
-├── predict.py
 ├── evaluate.py
+├── hair_augmentation.py
+├── predict.py
+├── requirements.txt
+├── train.py
+├── utils.py
 └── README.md
 ```
 
