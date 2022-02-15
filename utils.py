@@ -4,7 +4,7 @@ import numpy as np
 
 # tensorflow
 import tensorflow as tf
-    
+
 # custom imports
 import config
 
@@ -66,16 +66,6 @@ def get_lr_callback(batch_size=8):
     lr_callback = tf.keras.callbacks.LearningRateScheduler(lrfn, verbose=False)
     return lr_callback
 
-
-if __name__ == '__main__':  
-    '''
-    Unit testing of utils.py
-    '''
-    
-    # print class weights
-    get_class_weights()
-    
-    
 def plot_history(history, enet_type):
     '''
     Plot loss and AUC across epochs.
@@ -95,5 +85,17 @@ def plot_history(history, enet_type):
     plt.xlabel('epoch')
     plt.legend(['train', 'val'], loc='upper left')
     plt.show()
+    
+
+if __name__ == '__main__':  
+    '''
+    Unit testing of utils.py
+    '''
+    
+    # print class weights
+    get_class_weights(False)
+    
+    
+
     
     
