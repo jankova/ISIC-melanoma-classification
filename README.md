@@ -98,7 +98,7 @@ python evaluate.py
 -->
 
 #### Example output: 
-ROC curve for a model trained with
+ROC curve on validation data for a model trained with
 
 ```python train.py --enet-type EfficientNet --n-epochs 20 --augment --hair-augment --add-malig```
 
